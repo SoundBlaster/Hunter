@@ -5,3 +5,7 @@ HunterPrimitives
     LocalMetadataGuard
   PortableDirectory
   MetadataSizing
+  ScopedWork
+    TaskQueue
+    WorkerLaunch
+    Shutdown

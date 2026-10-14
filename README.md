@@ -54,3 +54,7 @@ byte calculation, without libc or any external dependencies. See its README and
 `specs/portable.spec.yaml`. This is an additional partial extraction; recursion,
 worker orchestration and complete scan lifetime remain host-owned. Workspace CI
 checks both packages. Prior scoped-metadata test records remain historical.
+
+The std-only core also contains generic WorkQueue and scoped worker launch/shutdown.
+It supports recursive task expansion while selection, recursion policy, setup/QoS
+and report lifecycle remain consumer-owned; see the core README and worker spec.

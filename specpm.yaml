@@ -3,20 +3,22 @@ kind: SpecPackage
 metadata:
   id: hunter.filesystem
   name: Hunter filesystem primitives
-  version: 0.1.0-draft.2
-  summary: Unix scoped metadata and dependency-free portable directory/size primitives;
-    full scanner pending.
+  version: 0.1.0-draft.3
+  summary: Scoped metadata, portable enumeration/sizing and generic scoped task coordination;
+    full product-independent filesystem recursion pending.
   license: MIT
   authors:
   - name: Egor Merkushev
 specs:
 - path: specs/scoped-metadata.spec.yaml
 - path: specs/portable.spec.yaml
+- path: specs/work.spec.yaml
 index:
   provides:
     capabilities:
     - hunter.fs.scoped_metadata
     - hunter.fs.portable
+    - hunter.fs.work
   requires:
     capabilities:
     - platform.filesystem.metadata
