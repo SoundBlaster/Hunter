@@ -36,7 +36,7 @@ interfaces:
 constraints:
 - id: scope
   level: MUST
-  statement: Own/Parent stay within the selected root; root Parent is unavailable;
+  statement: Own/Parent stay within the selected root; reject candidate parent components before deriving Parent; root Parent is unavailable;
     root and intermediate directory descriptors use no-follow opens; final metadata
     uses AT_SYMLINK_NOFOLLOW.
 - id: outcomes

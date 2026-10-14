@@ -92,6 +92,14 @@ impl ScopedMetadata {
             Ok(relative) => relative,
             Err(_) => return (unknown(Unavailable::OutOfScope), false),
         };
+        // Validate before Parent drops the last component. A terminal `..` must
+        // not become an in-scope observation against the selected root.
+        if relative
+            .components()
+            .any(|component| !matches!(component, Component::Normal(_)))
+        {
+            return (unknown(Unavailable::OutOfScope), false);
+        }
         let directory = match location {
             Location::Own => relative,
             Location::Parent => {
@@ -398,5 +406,32 @@ mod tests {
                 metadata_attempted: true
             }
         );
+    }
+    #[test]
+    fn parent_selection_cannot_hide_out_of_scope_components() {
+        let t = Tree::new();
+        fs::create_dir(t.0.join("child")).unwrap();
+        fs::write(t.0.join("signal"), b"unused").unwrap();
+        let scope = ScopedMetadata::open(&t.0).unwrap();
+        for candidate in [
+            t.0.join(".."),
+            t.0.join("child/.."),
+            t.0.join("child/../child"),
+        ] {
+            for location in [Location::Own, Location::Parent] {
+                assert_eq!(
+                    scope.inspect_regular_file(
+                        &candidate,
+                        location,
+                        std::ffi::OsStr::new("signal")
+                    ),
+                    Observation {
+                        fact: FileFact::Unavailable(Unavailable::OutOfScope),
+                        metadata_attempted: false
+                    },
+                    "{candidate:?} {location:?}"
+                );
+            }
+        }
     }
 }

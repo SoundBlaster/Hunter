@@ -22,7 +22,8 @@ stay distinct unavailable outcomes. `metadata_attempted` counts the final metada
 syscall only, not descriptor opens or `fstat`. Invalid names return without I/O.
 Paths/names retain OS bytes. Names must be one nonempty component, without `/`, NUL,
 `.` or `..`. Own/Parent select the candidate directory or its parent; root Parent
-cannot escape the selected scope.
+cannot escape the selected scope. Candidates containing parent components are rejected
+before deriving Parent, with no final metadata attempt.
 
 The host must hold effective permissions and set a non-materializing I/O policy on
 the calling thread before opening/using this object on macOS. Dataless detection
