@@ -9,3 +9,11 @@ RegularFileObservation:
   implementation: "inspect_regular_file + openat/fstatat no-follow"
 LocalMetadataGuard:
   implementation: "check_local + dataless; host owns thread materialization policy"
+PortableDirectory:
+  source: "crates/hunter-fs-core/src/lib.rs"
+  implementation: "visit_directory over host-opened entries"
+  boundary_spec: "hunter.fs.portable"
+MetadataSizing:
+  source: "crates/hunter-fs-core/src/lib.rs"
+  implementation: "metadata_bytes + MeasuredSize"
+  folded_into: "hunter.fs.portable"

@@ -7,3 +7,7 @@ description = "Scoped filesystem acquisition primitives for search engines"
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
+
+[workspace]
+members = ["crates/hunter-fs-core"]
+resolver = "3"
