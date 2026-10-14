@@ -46,3 +46,11 @@ on Linux/macOS/Windows; no app builds or whole-disk benchmarks.
 Derived from BuildHunter `crates/buildhunter-plugin-scanner/src/scope.rs` at
 `96780d7f9a9a9e5a6a19a53e2eea2f4f4ff1a2aa`, under the included MIT license.
 [Draft boundary](specs/scoped-metadata.spec.yaml), [map](specs/hypercode/current.hc).
+
+## Portable primitives
+
+`crates/hunter-fs-core` now owns portable one-directory enumeration and metadata
+byte calculation, without libc or any external dependencies. See its README and
+`specs/portable.spec.yaml`. This is an additional partial extraction; recursion,
+worker orchestration and complete scan lifetime remain host-owned. Workspace CI
+checks both packages. Prior scoped-metadata test records remain historical.

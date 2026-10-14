@@ -3,3 +3,5 @@ HunterPrimitives
     DescriptorLifetime
     RegularFileObservation
     LocalMetadataGuard
+  PortableDirectory
+  MetadataSizing
