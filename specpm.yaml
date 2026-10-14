@@ -1,0 +1,26 @@
+apiVersion: specpm.dev/v0.1
+kind: SpecPackage
+metadata:
+  id: hunter.filesystem
+  name: Hunter filesystem primitives
+  version: 0.1.0-draft.1
+  summary: Initial Unix scoped metadata boundary; full scanner extraction pending.
+  license: MIT
+  authors:
+  - name: Egor Merkushev
+specs:
+- path: specs/scoped-metadata.spec.yaml
+index:
+  provides:
+    capabilities:
+    - hunter.fs.scoped_metadata
+  requires:
+    capabilities:
+    - platform.filesystem.metadata
+foreignArtifacts:
+- format: hypercode
+  path: specs/hypercode/current.hc
+  role: documentation
+- format: hypercode-stylesheet
+  path: specs/hypercode/current.hcs
+  role: documentation
