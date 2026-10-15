@@ -14,7 +14,7 @@ scope:
   - Opaque task/listing contexts, IDs/paths, measurement intent plus host prefetch,
     aligned optional child slots and owned measurement/error results.
   excludes:
-  - Marker or artifact interpretation, ancestor accounting, recursion decisions, platform/bulk
+  - Consumer-specific policy/context interpretation, hierarchical accounting, recursive selection, platform/bulk
     backends, permissions/cloud guards, status policy and wire/FFI protocol enforcement.
 provides:
   capabilities:
