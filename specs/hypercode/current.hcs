@@ -17,3 +17,15 @@ MetadataSizing:
   source: "crates/hunter-fs-core/src/lib.rs"
   implementation: "metadata_bytes + MeasuredSize"
   folded_into: "hunter.fs.portable"
+ScopedWork:
+  source: "crates/hunter-fs-core/src/work.rs"
+  boundary_spec: "hunter.fs.work"
+TaskQueue:
+  implementation: "WorkQueue<T>, LIFO, unbounded"
+  folded_into: "hunter.fs.work"
+WorkerLaunch:
+  implementation: "spawn_workers + worker_count; caller-owned thread Scope"
+  folded_into: "hunter.fs.work"
+Shutdown:
+  implementation: "close_on_drop + panic close; outer Scope joins"
+  folded_into: "hunter.fs.work"
