@@ -23,3 +23,7 @@ HunterPrimitives
     ByteAggregation
     CompletionReadiness
     PartialCompletion
+  ScanExecution
+    ResultPump
+    IdleCheckpoint
+    StopBoundary

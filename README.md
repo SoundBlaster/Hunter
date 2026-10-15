@@ -75,3 +75,9 @@ actual worker/queue lifecycle; see specs/task-ledger.spec.yaml and the core READ
 SubtreeProgress now supplies saturating byte totals, pending-directory/root progress
 and one-shot partial completion values. Host routes contributions and owns dependent
 completion order; see specs/subtree-progress.spec.yaml and the core README.
+
+drive_scan and ScanCoordinator now provide the serial result execution loop with
+optional idle checkpoints and receipt-before-stop dispatch ordering. Host keeps
+initialization, backends, finalization/status and scoped worker lifetime; see
+specs/scan-execution.spec.yaml and the core README. Full engine extraction and
+whole-scan memory budgets remain outstanding; no performance gain is inferred.
