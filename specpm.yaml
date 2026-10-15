@@ -3,7 +3,7 @@ kind: SpecPackage
 metadata:
   id: hunter.filesystem
   name: Hunter filesystem primitives
-  version: 0.1.0-draft.7
+  version: 0.1.0-draft.8
   summary: Scoped metadata, portable enumeration/sizing and generic scoped task coordination;
     full product-independent filesystem recursion pending.
   license: MIT
@@ -17,6 +17,7 @@ specs:
 - path: specs/child-traversal.spec.yaml
 - path: specs/task-ledger.spec.yaml
 - path: specs/subtree-progress.spec.yaml
+- path: specs/scan-execution.spec.yaml
 index:
   provides:
     capabilities:
@@ -27,6 +28,7 @@ index:
     - hunter.fs.child_traversal
     - hunter.fs.task_ledger
     - hunter.fs.subtree_progress
+    - hunter.fs.scan_execution
   requires:
     capabilities:
     - platform.filesystem.metadata

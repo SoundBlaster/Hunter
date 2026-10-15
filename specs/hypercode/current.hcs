@@ -71,3 +71,15 @@ CompletionReadiness:
 PartialCompletion:
   implementation: "mark_partial + complete(force_partial); one owned result"
   folded_into: "hunter.fs.subtree_progress"
+ScanExecution:
+  source: "crates/hunter-fs-core/src/execution.rs"
+  boundary_spec: "hunter.fs.scan_execution"
+ResultPump:
+  implementation: "drive_scan + ScanCoordinator, serial receiver and opaque messages"
+  folded_into: "hunter.fs.scan_execution"
+IdleCheckpoint:
+  implementation: "positive optional timeout repeats host checkpoint without receipt"
+  folded_into: "hunter.fs.scan_execution"
+StopBoundary:
+  implementation: "receipt accounting before stop check; stopped message is not dispatched"
+  folded_into: "hunter.fs.scan_execution"
