@@ -19,3 +19,7 @@ HunterPrimitives
     TaskIdentity
     ResponseAccounting
     DeferredState
+  SubtreeProgress
+    ByteAggregation
+    CompletionReadiness
+    PartialCompletion
