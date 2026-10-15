@@ -48,7 +48,7 @@ constraints:
   level: MUST
   statement: First complete returns current bytes with stored_partial OR force_partial;
     subsequent calls return None. Partial marking is sticky. Completion does not require
-    readiness: host must check readiness for normal directory completion, know a leaf
+    readiness; host must check readiness for normal directory completion, know a leaf
     can finalize directly, or force a partial prefix on early stop. It does not cancel
     work, clear pending counters or freeze later host updates; no second completion is returned.
 - id: assembly
