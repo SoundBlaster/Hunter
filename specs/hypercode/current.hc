@@ -15,3 +15,7 @@ HunterPrimitives
   ChildTraversal
     HostSelection
     RecursiveRequests
+  TaskLedger
+    TaskIdentity
+    ResponseAccounting
+    DeferredState

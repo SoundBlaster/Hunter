@@ -67,3 +67,7 @@ ChildTraversal now emits host-selected recursive directory requests or indexed l
 observations from an owned listing. Host keeps guard/selection effects, assigns
 IDs, schedules requests and owns recursive accounting/status. See the core README
 and specs/child-traversal.spec.yaml; this is not a complete recursive scanner.
+
+DirectoryTaskLedger now centralizes serial task IDs, opaque listing/deferred state
+and expected-response bookkeeping. Caller still owns the result protocol and
+actual worker/queue lifecycle; see specs/task-ledger.spec.yaml and the core README.

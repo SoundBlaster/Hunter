@@ -47,3 +47,15 @@ HostSelection:
 RecursiveRequests:
   implementation: "PlannedChild + DirectoryRequest::into_task"
   folded_into: "hunter.fs.child_traversal"
+TaskLedger:
+  source: "crates/hunter-fs-core/src/ledger.rs"
+  boundary_spec: "hunter.fs.task_ledger"
+TaskIdentity:
+  implementation: "DirectoryTaskLedger::register + take_listing"
+  folded_into: "hunter.fs.task_ledger"
+ResponseAccounting:
+  implementation: "response_received + outstanding; host protocol ordering"
+  folded_into: "hunter.fs.task_ledger"
+DeferredState:
+  implementation: "defer_measurement + take_measurement; owned opaque state"
+  folded_into: "hunter.fs.task_ledger"
