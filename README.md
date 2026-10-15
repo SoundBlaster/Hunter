@@ -58,3 +58,7 @@ checks both packages. Prior scoped-metadata test records remain historical.
 The std-only core also contains generic WorkQueue and scoped worker launch/shutdown.
 It supports recursive task expansion while selection, recursion policy, setup/QoS
 and report lifecycle remain consumer-owned; see the core README and worker spec.
+
+DirectoryTask/Listing/Result and measurement planning now provide typed opaque
+job/result correlation and aligned partial measurements. Host keeps recursive
+selection, backends and protocol publication; see the core README and task spec.

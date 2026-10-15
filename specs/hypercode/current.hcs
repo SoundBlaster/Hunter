@@ -29,3 +29,12 @@ WorkerLaunch:
 Shutdown:
   implementation: "close_on_drop + panic close; outer Scope joins"
   folded_into: "hunter.fs.work"
+DirectoryTasks:
+  source: "crates/hunter-fs-core/src/task.rs"
+  boundary_spec: "hunter.fs.directory_tasks"
+MeasurementPlanning:
+  implementation: "DirectoryTask::measurement_plan + DirectoryMeasurementPlan::measure"
+  folded_into: "hunter.fs.directory_tasks"
+ResultEnvelope:
+  implementation: "DirectoryListing + DirectoryMeasurement + DirectoryResult"
+  folded_into: "hunter.fs.directory_tasks"
