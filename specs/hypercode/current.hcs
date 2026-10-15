@@ -38,3 +38,12 @@ MeasurementPlanning:
 ResultEnvelope:
   implementation: "DirectoryListing + DirectoryMeasurement + DirectoryResult"
   folded_into: "hunter.fs.directory_tasks"
+ChildTraversal:
+  source: "crates/hunter-fs-core/src/children.rs"
+  boundary_spec: "hunter.fs.child_traversal"
+HostSelection:
+  implementation: "ChildTraversal::next_child + ChildDecision"
+  folded_into: "hunter.fs.child_traversal"
+RecursiveRequests:
+  implementation: "PlannedChild + DirectoryRequest::into_task"
+  folded_into: "hunter.fs.child_traversal"

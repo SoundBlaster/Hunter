@@ -62,3 +62,8 @@ and report lifecycle remain consumer-owned; see the core README and worker spec.
 DirectoryTask/Listing/Result and measurement planning now provide typed opaque
 job/result correlation and aligned partial measurements. Host keeps recursive
 selection, backends and protocol publication; see the core README and task spec.
+
+ChildTraversal now emits host-selected recursive directory requests or indexed leaf
+observations from an owned listing. Host keeps guard/selection effects, assigns
+IDs, schedules requests and owns recursive accounting/status. See the core README
+and specs/child-traversal.spec.yaml; this is not a complete recursive scanner.

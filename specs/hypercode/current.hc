@@ -12,3 +12,6 @@ HunterPrimitives
   DirectoryTasks
     MeasurementPlanning
     ResultEnvelope
+  ChildTraversal
+    HostSelection
+    RecursiveRequests
