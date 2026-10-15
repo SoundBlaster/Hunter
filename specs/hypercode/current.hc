@@ -27,3 +27,6 @@ HunterPrimitives
     ResultPump
     IdleCheckpoint
     StopBoundary
+  FilesystemBackend
+    NativePathAccess
+    RootObservation

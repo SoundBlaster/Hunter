@@ -83,3 +83,12 @@ IdleCheckpoint:
 StopBoundary:
   implementation: "receipt accounting before stop check; stopped message is not dispatched"
   folded_into: "hunter.fs.scan_execution"
+FilesystemBackend:
+  source: "crates/hunter-fs-core/src/backend.rs"
+  boundary_spec: "hunter.fs.backend"
+NativePathAccess:
+  implementation: "StdFilesystem + FilesystemBackend symlink_metadata/read_dir"
+  folded_into: "hunter.fs.backend"
+RootObservation:
+  implementation: "observe_root; one metadata call, owned Directory/Entry facts"
+  folded_into: "hunter.fs.backend"
