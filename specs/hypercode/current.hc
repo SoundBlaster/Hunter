@@ -9,3 +9,6 @@ HunterPrimitives
     TaskQueue
     WorkerLaunch
     Shutdown
+  DirectoryTasks
+    MeasurementPlanning
+    ResultEnvelope
