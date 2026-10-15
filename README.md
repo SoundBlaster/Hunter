@@ -71,3 +71,7 @@ and specs/child-traversal.spec.yaml; this is not a complete recursive scanner.
 DirectoryTaskLedger now centralizes serial task IDs, opaque listing/deferred state
 and expected-response bookkeeping. Caller still owns the result protocol and
 actual worker/queue lifecycle; see specs/task-ledger.spec.yaml and the core README.
+
+SubtreeProgress now supplies saturating byte totals, pending-directory/root progress
+and one-shot partial completion values. Host routes contributions and owns dependent
+completion order; see specs/subtree-progress.spec.yaml and the core README.

@@ -59,3 +59,15 @@ ResponseAccounting:
 DeferredState:
   implementation: "defer_measurement + take_measurement; owned opaque state"
   folded_into: "hunter.fs.task_ledger"
+SubtreeProgress:
+  source: "crates/hunter-fs-core/src/subtree.rs"
+  boundary_spec: "hunter.fs.subtree_progress"
+ByteAggregation:
+  implementation: "add_bytes saturating u64 + set_bytes"
+  folded_into: "hunter.fs.subtree_progress"
+CompletionReadiness:
+  implementation: "pending directory/root flags + is_ready/is_completed"
+  folded_into: "hunter.fs.subtree_progress"
+PartialCompletion:
+  implementation: "mark_partial + complete(force_partial); one owned result"
+  folded_into: "hunter.fs.subtree_progress"
