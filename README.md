@@ -81,3 +81,8 @@ optional idle checkpoints and receipt-before-stop dispatch ordering. Host keeps
 initialization, backends, finalization/status and scoped worker lifetime; see
 specs/scan-execution.spec.yaml and the core README. Full engine extraction and
 whole-scan memory budgets remain outstanding; no performance gain is inferred.
+
+FilesystemBackend/StdFilesystem now provide the native metadata/listing seam;
+observe_root returns one owned Directory/Entry observation for host initialization.
+Host still applies access/cloud admission, guards, scheduling and final status.
+See specs/filesystem-backend.spec.yaml and the core README for path/link/race limits.
