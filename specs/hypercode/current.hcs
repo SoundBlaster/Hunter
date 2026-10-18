@@ -128,3 +128,15 @@ PreparedFileEffects:
 SharedSlotExecution:
   implementation: "task.rs measure/measure_with share measure_prepared loop"
   folded_into: "hunter.fs.measurement_backend"
+ScopedSession:
+  source: "crates/hunter-fs-core/src/session.rs"
+  boundary_spec: "hunter.fs.scoped_session"
+HelperStartup:
+  implementation: "host scoped helpers then spawn_workers then caller coordinator"
+  folded_into: "hunter.fs.scoped_session"
+QueueShutdown:
+  implementation: "helper-stop guard drops before close_on_drop and scope join"
+  folded_into: "hunter.fs.scoped_session"
+JoinBoundary:
+  implementation: "owned scope captures release on unwind; result after actual join"
+  folded_into: "hunter.fs.scoped_session"

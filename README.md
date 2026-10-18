@@ -102,3 +102,8 @@ DirectoryMeasurementBackend/FileMeasurementBackend and plan.measure_with now sup
 a typed preparation seam while retaining the closure API and shared slot loop.
 Host owns native/batch effects and guards; prepared state is owned and released
 before completion/unwind. See specs/measurement-backend.spec.yaml and the core README.
+
+run_scoped_workers now assembles helper startup, scoped worker launch, caller-thread
+coordination, helper stop/queue closure and actual join. Host retains root admission,
+guards, QoS and terminal interpretation; see specs/scoped-session.spec.yaml. The
+helper does not guarantee arbitrary callback termination or full scan acceptance.
