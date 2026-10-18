@@ -49,3 +49,7 @@ HunterPrimitives
   RootAdmission
     HostPreflight
     AdmissionOutcome
+  BackendLifetime
+    GuardedPreparation
+    BackendRelease
+    ThreadMaterializationPolicy

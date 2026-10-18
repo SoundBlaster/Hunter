@@ -149,3 +149,16 @@ HostPreflight:
 AdmissionOutcome:
   implementation: "Skipped, Observed or Unavailable; no status interpretation"
   folded_into: "hunter.fs.root_admission"
+BackendLifetime:
+  source: "crates/hunter-fs-core/src/lifetime.rs"
+  boundary_spec: "hunter.fs.backend_lifetime"
+GuardedPreparation:
+  implementation: "enter guard, prepare backend, run borrowed body on caller thread"
+  folded_into: "hunter.fs.backend_lifetime"
+BackendRelease:
+  implementation: "owned backend drops before guard on return/unwind"
+  folded_into: "hunter.fs.backend_lifetime"
+ThreadMaterializationPolicy:
+  source: "crates/hunter-fs-core/src/materialization.rs"
+  implementation: "NonMaterializingIoGuard; Darwin thread policy restore, no-op elsewhere"
+  folded_into: "hunter.fs.backend_lifetime"
