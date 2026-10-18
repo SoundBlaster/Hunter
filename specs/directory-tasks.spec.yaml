@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.directory_tasks
   title: Opaque directory tasks and measurement results
-  version: 0.1.0-draft.1
+  version: 0.1.0-draft.2
   status: draft
 intent:
   summary: Plan original-position file measurements from a directory task and preserve
@@ -29,7 +29,8 @@ interfaces:
   - id: directory_plan
     kind: library
     summary: DirectoryTask::measurement_plan(children, prefetch); plan.measure(directory,
-      prepare_backend, should_stop) -> DirectoryMeasurement.
+      prepare_backend, should_stop) or plan.measure_with(typed_backend, should_stop)
+      -> DirectoryMeasurement. Typed effects are described by hunter.fs.measurement_backend.
   outbound: []
 constraints:
 - id: opaque_context
@@ -49,7 +50,7 @@ constraints:
     on cancellation and retain per-slot I/O errors; never compact/reindex results.
 - id: host_protocol
   level: MUST
-  statement: Host publishes Listed before plan.measure, correlates result IDs, sends
+  statement: Host publishes Listed before plan.measure/measure_with, correlates result IDs, sends
     Measured for partial/cancelled passes and owns guard/access lifetime, backend
     effects and final status. Result enum alone does not enforce this protocol.
 effects:
