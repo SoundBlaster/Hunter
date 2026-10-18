@@ -5,6 +5,9 @@ edition = "2024"
 license = "MIT"
 description = "Scoped filesystem acquisition primitives for search engines"
 
+[dependencies]
+hunter-fs-core = { path = "crates/hunter-fs-core" }
+
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
 
