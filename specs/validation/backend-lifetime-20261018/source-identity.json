@@ -21,7 +21,7 @@
     },
     {
       "path": "crates/hunter-fs-core/README.md",
-      "sha256": "52198af0d738e4b19803c8987805c7b54a87b01bb961a351705464b47203ec80"
+      "sha256": "407d986a60a11d5e9a3a5190a4adb2533ed92862cdcf3733aa34cf18ba8cc31d"
     },
     {
       "path": "crates/hunter-fs-core/src/admission.rs",
