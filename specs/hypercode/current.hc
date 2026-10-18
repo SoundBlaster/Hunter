@@ -30,3 +30,7 @@ HunterPrimitives
   FilesystemBackend
     NativePathAccess
     RootObservation
+  DirectoryWorker
+    TaskExecution
+    ListingFirst
+    PublicationBoundary
