@@ -107,3 +107,13 @@ run_scoped_workers now assembles helper startup, scoped worker launch, caller-th
 coordination, helper stop/queue closure and actual join. Host retains root admission,
 guards, QoS and terminal interpretation; see specs/scoped-session.spec.yaml. The
 helper does not guarantee arbitrary callback termination or full scan acceptance.
+
+Root admission uses `admit_root(backend, path, preflight)` to return an opaque
+`Skipped(reason)`, original `Observed(RootObservation)` or unchanged
+`Unavailable(io::Error)`. Host preflight runs once before any backend metadata call;
+a skip never observes metadata. Allowed roots delegate to `observe_root` once.
+The callback may have its own effects. Guard ownership, reason/status interpretation,
+classification, scheduling, warnings and final publication remain host-owned.
+No cancellation check or normalization is added; pre-cancelled observation and
+final-component no-follow semantics remain. See `specs/root-admission.spec.yaml`
+in the upstream repository; this is a draft sequencing boundary, not full startup.
