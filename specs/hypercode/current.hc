@@ -42,3 +42,7 @@ HunterPrimitives
     DirectoryPreparation
     PreparedFileEffects
     SharedSlotExecution
+  ScopedSession
+    HelperStartup
+    QueueShutdown
+    JoinBoundary
