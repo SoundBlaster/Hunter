@@ -92,3 +92,15 @@ NativePathAccess:
 RootObservation:
   implementation: "observe_root; one metadata call, owned Directory/Entry facts"
   folded_into: "hunter.fs.backend"
+DirectoryWorker:
+  source: "crates/hunter-fs-core/src/worker.rs"
+  boundary_spec: "hunter.fs.directory_worker"
+TaskExecution:
+  implementation: "run_directory_worker + synchronous DirectoryWorker adapter"
+  folded_into: "hunter.fs.directory_worker"
+ListingFirst:
+  implementation: "publish Listed before measure, then publish returned Measured"
+  folded_into: "hunter.fs.directory_worker"
+PublicationBoundary:
+  implementation: "false publication returns before next effect/task; host owns queue closure"
+  folded_into: "hunter.fs.directory_worker"

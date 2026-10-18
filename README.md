@@ -86,3 +86,8 @@ FilesystemBackend/StdFilesystem now provide the native metadata/listing seam;
 observe_root returns one owned Directory/Entry observation for host initialization.
 Host still applies access/cloud admission, guards, scheduling and final status.
 See specs/filesystem-backend.spec.yaml and the core README for path/link/race limits.
+
+DirectoryWorker/run_directory_worker now own the directory-task protocol loop:
+list, request host prefetch, publish Listed, measure and publish Measured. Host
+keeps backend/guard/timing policy and actual worker scope lifetime. Rejection
+stops this worker without taking another task; see specs/directory-worker.spec.yaml.
