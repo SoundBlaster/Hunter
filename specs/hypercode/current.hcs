@@ -162,3 +162,15 @@ ThreadMaterializationPolicy:
   source: "crates/hunter-fs-core/src/materialization.rs"
   implementation: "NonMaterializingIoGuard; Darwin thread policy restore, no-op elsewhere"
   folded_into: "hunter.fs.backend_lifetime"
+ScanAssembly:
+  source: "crates/hunter-fs-core/src/assembly.rs"
+  boundary_spec: "hunter.fs.scan_assembly"
+GuardedQueue:
+  implementation: "with_scan_session; queue and capped parallelism after backend preparation"
+  folded_into: "hunter.fs.scan_assembly"
+SingleLaunch:
+  implementation: "consuming ScanSession::run; no Clone; scoped join before return"
+  folded_into: "hunter.fs.scan_assembly"
+HostFinalization:
+  implementation: "host body continues after join, inside backend/guard scope"
+  folded_into: "hunter.fs.scan_assembly"

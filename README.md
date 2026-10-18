@@ -132,3 +132,9 @@ providers refuse downloads. Hosts still choose where to apply guards and own clo
 paths, backend algorithms, warnings/status and terminal events. The default plugin
 migration, full engine assembly and whole-process resource budgets remain pending.
 See the upstream `specs/backend-lifetime.spec.yaml` draft and fresh validation.
+
+Guarded scan assembly now lives in the std-only core: `with_scan_session` owns the
+empty queue/count inside backend/guard lifetime; consuming `ScanSession::run` joins
+before caller finalization. Root admission policy stays in the host coordinator.
+See specs/scan-assembly.spec.yaml and specs/validation/scan-assembly-20261019;
+full engine assembly, classification and resource budgets remain outside this slice.

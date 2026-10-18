@@ -53,3 +53,7 @@ HunterPrimitives
     GuardedPreparation
     BackendRelease
     ThreadMaterializationPolicy
+  ScanAssembly
+    GuardedQueue
+    SingleLaunch
+    HostFinalization
