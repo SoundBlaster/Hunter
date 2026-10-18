@@ -97,3 +97,8 @@ host entry/context observer. It keeps collection independent of context meaning;
 observer errors retain children, and cancellation preserves the observed prefix.
 Host keeps opening, guards, observer I/O and post-list behavior. See
 specs/directory-listing.spec.yaml and the core README for callback/link/race limits.
+
+DirectoryMeasurementBackend/FileMeasurementBackend and plan.measure_with now supply
+a typed preparation seam while retaining the closure API and shared slot loop.
+Host owns native/batch effects and guards; prepared state is owned and released
+before completion/unwind. See specs/measurement-backend.spec.yaml and the core README.

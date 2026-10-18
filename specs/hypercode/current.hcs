@@ -116,3 +116,15 @@ ContextObservation:
 AcquisitionOutcome:
   implementation: "preserved Completed/Cancelled/OpenFailed and partial listing"
   folded_into: "hunter.fs.directory_listing"
+MeasurementBackend:
+  source: "crates/hunter-fs-core/src/measurement.rs"
+  boundary_spec: "hunter.fs.measurement_backend"
+DirectoryPreparation:
+  implementation: "directory_metadata then prepare_files before cancellation"
+  folded_into: "hunter.fs.measurement_backend"
+PreparedFileEffects:
+  implementation: "owned FileMeasurementBackend; host effects/fallbacks/guards"
+  folded_into: "hunter.fs.measurement_backend"
+SharedSlotExecution:
+  implementation: "task.rs measure/measure_with share measure_prepared loop"
+  folded_into: "hunter.fs.measurement_backend"

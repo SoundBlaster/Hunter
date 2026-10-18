@@ -38,3 +38,7 @@ HunterPrimitives
     OrderedCollection
     ContextObservation
     AcquisitionOutcome
+  MeasurementBackend
+    DirectoryPreparation
+    PreparedFileEffects
+    SharedSlotExecution
