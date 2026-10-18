@@ -140,3 +140,12 @@ QueueShutdown:
 JoinBoundary:
   implementation: "owned scope captures release on unwind; result after actual join"
   folded_into: "hunter.fs.scoped_session"
+RootAdmission:
+  source: "crates/hunter-fs-core/src/admission.rs"
+  boundary_spec: "hunter.fs.root_admission"
+HostPreflight:
+  implementation: "FnOnce on original path before backend access; opaque reason"
+  folded_into: "hunter.fs.root_admission"
+AdmissionOutcome:
+  implementation: "Skipped, Observed or Unavailable; no status interpretation"
+  folded_into: "hunter.fs.root_admission"

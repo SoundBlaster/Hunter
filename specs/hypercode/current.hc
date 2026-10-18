@@ -46,3 +46,6 @@ HunterPrimitives
     HelperStartup
     QueueShutdown
     JoinBoundary
+  RootAdmission
+    HostPreflight
+    AdmissionOutcome
