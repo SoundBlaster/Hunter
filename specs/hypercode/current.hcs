@@ -104,3 +104,15 @@ ListingFirst:
 PublicationBoundary:
   implementation: "false publication returns before next effect/task; host owns queue closure"
   folded_into: "hunter.fs.directory_worker"
+DirectoryAcquisition:
+  source: "crates/hunter-fs-core/src/listing.rs"
+  boundary_spec: "hunter.fs.directory_listing"
+OrderedCollection:
+  implementation: "collect_directory + visit_directory; one owned children/errors listing"
+  folded_into: "hunter.fs.directory_listing"
+ContextObservation:
+  implementation: "synchronous entry/context observer; errors retain child and context"
+  folded_into: "hunter.fs.directory_listing"
+AcquisitionOutcome:
+  implementation: "preserved Completed/Cancelled/OpenFailed and partial listing"
+  folded_into: "hunter.fs.directory_listing"

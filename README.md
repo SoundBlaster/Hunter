@@ -91,3 +91,9 @@ DirectoryWorker/run_directory_worker now own the directory-task protocol loop:
 list, request host prefetch, publish Listed, measure and publish Measured. Host
 keeps backend/guard/timing policy and actual worker scope lifetime. Rejection
 stops this worker without taking another task; see specs/directory-worker.spec.yaml.
+
+collect_directory now collects an owned listing plus visit outcome with an ordered
+host entry/context observer. It keeps collection independent of context meaning;
+observer errors retain children, and cancellation preserves the observed prefix.
+Host keeps opening, guards, observer I/O and post-list behavior. See
+specs/directory-listing.spec.yaml and the core README for callback/link/race limits.
