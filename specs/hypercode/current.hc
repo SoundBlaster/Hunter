@@ -34,3 +34,7 @@ HunterPrimitives
     TaskExecution
     ListingFirst
     PublicationBoundary
+  DirectoryAcquisition
+    OrderedCollection
+    ContextObservation
+    AcquisitionOutcome
