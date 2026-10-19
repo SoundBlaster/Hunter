@@ -174,3 +174,15 @@ SingleLaunch:
 HostFinalization:
   implementation: "host body continues after join, inside backend/guard scope"
   folded_into: "hunter.fs.scan_assembly"
+TraversalCoordinator:
+  source: "crates/hunter-fs-core/src/coordinator.rs"
+  boundary_spec: "hunter.fs.traversal_coordinator"
+RootInitialization:
+  implementation: "run calls admit_root then host initialize; false skips pump/finish"
+  folded_into: "hunter.fs.traversal_coordinator"
+OwnedTaskAccounting:
+  implementation: "TraversalTasks owns ledger; reservation/telemetry before queue publication"
+  folded_into: "hunter.fs.traversal_coordinator"
+HostInterpretation:
+  implementation: "TraversalHandler; caller-thread callbacks; host retains message/report meaning"
+  folded_into: "hunter.fs.traversal_coordinator"
