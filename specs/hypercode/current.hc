@@ -57,3 +57,7 @@ HunterPrimitives
     GuardedQueue
     SingleLaunch
     HostFinalization
+  TraversalCoordinator
+    RootInitialization
+    OwnedTaskAccounting
+    HostInterpretation
