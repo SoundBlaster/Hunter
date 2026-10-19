@@ -99,7 +99,7 @@ implementationBindings:
   language: rust
   source:
     repository: https://github.com/SoundBlaster/Hunter
-    revision: d728f1a9c13a578df930ff2cc4a42359398d1ee7
+    revision: 920a51afb85efdb21951d61d1ef3894148017cbc
   files:
     owned: [crates/hunter-fs-core/src/engine.rs]
     border: [crates/hunter-fs-core/src/lib.rs, crates/hunter-fs-core/src/coordinator.rs,
