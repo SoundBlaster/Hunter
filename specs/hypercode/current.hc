@@ -61,3 +61,7 @@ HunterPrimitives
     RootInitialization
     OwnedTaskAccounting
     HostInterpretation
+  EntryProcessing
+    ChildRouting
+    SelectedMetadata
+    CompletionCallbacks
