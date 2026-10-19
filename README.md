@@ -165,3 +165,9 @@ scope to retain root-observation timing. Classification, markers, child-routing
 policy, selected-subtree membership, report events and final status stay in the host.
 This remains partial engine extraction: see specs/traversal-coordinator.spec.yaml
 (draft); full domain-independent recursion and resource budgets are not promised.
+
+Child routing and selected metadata reconciliation now live in the std-only core.
+ChildTraversal::route retains host admission/selection; SelectedMeasurementPlan
+preserves root/worker/fallback and original-slot semantics, while host callbacks
+retain interpretation/aggregation. See specs/entry-processing.spec.yaml; complete
+engine facade, branch-state composition and resource budgets remain pending.
