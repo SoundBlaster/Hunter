@@ -198,3 +198,15 @@ SelectedMetadata:
 CompletionCallbacks:
   implementation: "MeasurementHandler finish before selected/cached buffers release"
   folded_into: "hunter.fs.entry_processing"
+ScanEngine:
+  source: "crates/hunter-fs-core/src/engine.rs"
+  boundary_spec: "hunter.fs.scan_engine"
+ResponseInterpretation:
+  implementation: "ScanEngine Adapter delegates coordinator protocol; host decodes controls/results"
+  folded_into: "hunter.fs.scan_engine"
+BranchPreparation:
+  implementation: "ScanHandler prepare returns Abandon/Complete/Traverse; common routing with opaque branch"
+  folded_into: "hunter.fs.scan_engine"
+DeferredResolution:
+  implementation: "engine-owned PendingSelection; original-slot selected measurement and host completion"
+  folded_into: "hunter.fs.scan_engine"

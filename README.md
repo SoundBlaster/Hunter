@@ -169,5 +169,20 @@ This remains partial engine extraction: see specs/traversal-coordinator.spec.yam
 Child routing and selected metadata reconciliation now live in the std-only core.
 ChildTraversal::route retains host admission/selection; SelectedMeasurementPlan
 preserves root/worker/fallback and original-slot semantics, while host callbacks
-retain interpretation/aggregation. See specs/entry-processing.spec.yaml; complete
-engine facade, branch-state composition and resource budgets remain pending.
+retain interpretation/aggregation. See specs/entry-processing.spec.yaml; the serial composition facade is described below.
+Autonomous backend/worker factories and resource budgets remain pending.
+
+## Composed scan entrypoint
+
+`ScanEngine::run` now composes root/task coordination, typed response dispatch,
+child routing and selected metadata resolution around `ScanHandler`. Branch state
+and selection payload stay opaque; the engine owns deferred plan assembly and the
+immediate/deferred/ignored measurement branches. `drive` accepts already initialized
+work. Lower-level primitives remain available; no new dependency or thread is added.
+
+Host callbacks retain policy, context meaning, scheduling decisions, warnings/units/
+aggregation and product reporting. The facade is called inside the existing guarded
+ScanSession worker scope, with unread receiver release before join and final events
+afterward. It is not an autonomous worker/backend factory or a resource-budget claim.
+See the core README, specs/scan-engine.spec.yaml (draft), and fresh source-bound
+validation at specs/validation/scan-engine-20261019. Earlier receipts stay historical.

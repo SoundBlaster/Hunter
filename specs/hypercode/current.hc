@@ -65,3 +65,7 @@ HunterPrimitives
     ChildRouting
     SelectedMetadata
     CompletionCallbacks
+  ScanEngine
+    ResponseInterpretation
+    BranchPreparation
+    DeferredResolution
