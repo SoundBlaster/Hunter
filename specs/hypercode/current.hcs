@@ -186,3 +186,15 @@ OwnedTaskAccounting:
 HostInterpretation:
   implementation: "TraversalHandler; caller-thread callbacks; host retains message/report meaning"
   folded_into: "hunter.fs.traversal_coordinator"
+EntryProcessing:
+  source: "crates/hunter-fs-core/src/processing.rs"
+  boundary_spec: "hunter.fs.entry_processing"
+ChildRouting:
+  implementation: "ChildTraversal::route + ChildHandler; original indices and stop prefix"
+  folded_into: "hunter.fs.entry_processing"
+SelectedMetadata:
+  implementation: "SelectedEntry + SelectedMeasurementPlan; root/worker/fallback precedence"
+  folded_into: "hunter.fs.entry_processing"
+CompletionCallbacks:
+  implementation: "MeasurementHandler finish before selected/cached buffers release"
+  folded_into: "hunter.fs.entry_processing"
