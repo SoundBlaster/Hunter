@@ -28,7 +28,7 @@ primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0293297Z ^[[1m^[[94m27^[[0m ^[[91m- ^[[0m    Traverse(^[[91mBranchPlan<Branch>^[[0m),
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0294268Z ^[[1m^[[94m27^[[0m ^[[92m+ ^[[0m    Traverse(^[[92mBox<BranchPlan<Branch>>^[[0m),
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0295185Z    ^[[1m^[[94m|^[[0m
-primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0295450Z 
+primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0295450Z
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0296007Z ^[[1m^[[91merror^[[0m: could not compile `hunter-fs-core` (lib) due to 1 previous error
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.0297028Z ^[[1m^[[33mwarning^[[0m: build failed, waiting for other jobs to finish...
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.3874641Z ^[[1m^[[91merror^[[0m^[[1m: large size difference between variants^[[0m
@@ -48,6 +48,6 @@ primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.3891264Z ^[[1m^[[94m387^[[0m ^[[91m- ^[[0m        Directory(^[[91mDirectoryResult<usize, u8>^[[0m),
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.3892442Z ^[[1m^[[94m387^[[0m ^[[92m+ ^[[0m        Directory(^[[92mBox<DirectoryResult<usize, u8>>^[[0m),
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.3893612Z     ^[[1m^[[94m|^[[0m
-primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.3893960Z 
+primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.3893960Z
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.4128022Z ^[[1m^[[91merror^[[0m: could not compile `hunter-fs-core` (lib test) due to 2 previous errors
 primitives (ubuntu-latest)	Run cargo clippy --workspace --locked --all-targets -- -D warnings	2026-10-19T08:27:13.5016703Z ##[error]Process completed with exit code 101.
