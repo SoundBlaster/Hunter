@@ -164,6 +164,7 @@ ThreadMaterializationPolicy:
   folded_into: "hunter.fs.backend_lifetime"
 ScanAssembly:
   source: "crates/hunter-fs-core/src/assembly.rs"
+  launch_source: "crates/hunter-fs-core/src/launch.rs"
   boundary_spec: "hunter.fs.scan_assembly"
 GuardedQueue:
   implementation: "with_scan_session; queue and capped parallelism after backend preparation"
@@ -210,3 +211,16 @@ BranchPreparation:
 DeferredResolution:
   implementation: "engine-owned PendingSelection; original-slot selected measurement and host completion"
   folded_into: "hunter.fs.scan_engine"
+EngineLaunch:
+  source: "crates/hunter-fs-core/src/launch.rs"
+  implementation: "ScanSession::run_engine composes existing session + ScanEngine"
+  folded_into: "hunter.fs.scan_assembly"
+ResponseChannel:
+  implementation: "ScanChannel; original sender drops before factory; receiver drops before collect/join"
+  folded_into: "hunter.fs.scan_assembly"
+HostConstruction:
+  implementation: "caller-thread make_host after worker startup and before root observation"
+  folded_into: "hunter.fs.scan_assembly"
+PreJoinCollection:
+  implementation: "collect host/outcome before helper stop/queue close/join; post-join publication stays host-owned"
+  folded_into: "hunter.fs.scan_assembly"
