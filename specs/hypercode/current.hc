@@ -57,6 +57,10 @@ HunterPrimitives
     GuardedQueue
     SingleLaunch
     HostFinalization
+    EngineLaunch
+      ResponseChannel
+      HostConstruction
+      PreJoinCollection
   TraversalCoordinator
     RootInitialization
     OwnedTaskAccounting

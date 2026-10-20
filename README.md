@@ -186,3 +186,10 @@ ScanSession worker scope, with unread receiver release before join and final eve
 afterward. It is not an autonomous worker/backend factory or a resource-budget claim.
 See the core README, specs/scan-engine.spec.yaml (draft), and fresh source-bound
 validation at specs/validation/scan-engine-20261019. Earlier receipts stay historical.
+
+`ScanSession::run_engine` now composes launch wiring with ScanEngine: ScanChannel
+retains original producer/receiver ownership, EngineLaunch groups borrowed settings,
+make_host runs on the caller, and collect extracts report inputs/releases host state
+before helper shutdown and join. The result returns after join; product terminal
+publication remains outside. See the expanded draft scan-assembly boundary and
+specs/validation/engine-launch-20261020. No extra stop probe, I/O or thread is added.
