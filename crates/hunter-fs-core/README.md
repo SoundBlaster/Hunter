@@ -472,3 +472,14 @@ Source: BuildHunter `src/bulk_metadata.rs` at 7ab00f16ae437fe88427c2acbe1b651b30
 (MIT). Product counters, error decoration, fallback and backend choice remain host-owned.
 See `specs/darwin-bulk.spec.yaml` in Hunter and fresh validation
 `specs/validation/darwin-bulk-20261021`; historical receipts remain historical.
+
+## Prepared directory sizes — 2026-10-21
+
+`PreparedDirectorySizes::new(result).take_file(path)` owns a batch and consumes each
+basename value/error once. Missing/consumed names and Unsupported acquisition return
+None for host fallback. Other whole-batch errors repeat without reacquisition, with
+errno or kind/message preserved. No I/O, stop probe or profiling is added. The host
+supplies original paths from the same directory, holds guards and applies error
+decoration. Keys use the same process/platform OsStr encoding, not a serialized path.
+This portable helper is separate from opt-in Darwin acquisition. See the draft
+`specs/prepared-batch.spec.yaml` and `specs/validation/prepared-batch-20261021`.

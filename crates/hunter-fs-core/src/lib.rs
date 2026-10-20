@@ -350,3 +350,6 @@ pub use launch::{EngineLaunch, ScanChannel};
 /// Opt-in Darwin batch metadata. Host owns policy/guard placement and backend choice.
 #[cfg(all(target_os = "macos", feature = "macos-bulk-metadata"))]
 pub mod darwin_bulk;
+
+mod batch;
+pub use batch::{DirectorySizes, PreparedDirectorySizes};

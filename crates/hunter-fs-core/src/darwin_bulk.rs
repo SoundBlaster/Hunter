@@ -40,7 +40,7 @@ unsafe extern "C" {
 }
 
 /// One directory pass keyed by lossless Unix basename bytes. Not a persistent cache.
-pub type DirectorySizes = HashMap<Vec<u8>, io::Result<MeasuredSize>>;
+pub use crate::DirectorySizes;
 
 /// Read apparent/allocated sizes without opening file contents. The caller holds
 /// permissions and the thread's non-materializing I/O guard throughout this call.

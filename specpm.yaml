@@ -3,7 +3,7 @@ kind: SpecPackage
 metadata:
   id: hunter.filesystem
   name: Hunter filesystem primitives
-  version: 0.1.0-draft.21
+  version: 0.1.0-draft.22
   summary: Scoped metadata, portable enumeration/sizing and generic scoped task coordination;
     full product-independent filesystem recursion pending.
   license: MIT
@@ -30,6 +30,7 @@ specs:
 - path: specs/entry-processing.spec.yaml
 - path: specs/scan-engine.spec.yaml
 - path: specs/darwin-bulk.spec.yaml
+- path: specs/prepared-batch.spec.yaml
 index:
   provides:
     capabilities:
@@ -53,6 +54,7 @@ index:
     - hunter.fs.entry_processing
     - hunter.fs.scan_engine
     - hunter.fs.darwin_bulk_metadata
+    - hunter.fs.prepared_directory_sizes
   requires:
     capabilities:
     - platform.filesystem.metadata

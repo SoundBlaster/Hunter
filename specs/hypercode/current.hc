@@ -77,3 +77,6 @@ HunterPrimitives
     NoFollowOpen
     CheckedRecords
     BatchCheckpoint
+  PreparedDirectorySizes
+    ConsumeOnceLookup
+    BatchErrorFallback

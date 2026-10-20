@@ -237,3 +237,13 @@ CheckedRecords:
 BatchCheckpoint:
   implementation: "FnMut stop before each batch, after open; accumulated prefix on stop"
   folded_into: "hunter.fs.darwin_bulk_metadata"
+PreparedDirectorySizes:
+  source: "crates/hunter-fs-core/src/batch.rs"
+  boundary_spec: "hunter.fs.prepared_directory_sizes"
+  availability: "portable; no filesystem effects"
+ConsumeOnceLookup:
+  implementation: "take_file removes raw platform basename observations including errors"
+  folded_into: "hunter.fs.prepared_directory_sizes"
+BatchErrorFallback:
+  implementation: "None for missing/consumed/Unsupported; other batch errors reconstructed without retry"
+  folded_into: "hunter.fs.prepared_directory_sizes"
