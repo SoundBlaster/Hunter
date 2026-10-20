@@ -73,3 +73,7 @@ HunterPrimitives
     ResponseInterpretation
     BranchPreparation
     DeferredResolution
+  DarwinBatchMetadata
+    NoFollowOpen
+    CheckedRecords
+    BatchCheckpoint

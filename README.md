@@ -193,3 +193,18 @@ make_host runs on the caller, and collect extracts report inputs/releases host s
 before helper shutdown and join. The result returns after join; product terminal
 publication remains outside. See the expanded draft scan-assembly boundary and
 specs/validation/engine-launch-20261020. No extra stop probe, I/O or thread is added.
+
+## Opt-in Darwin batch metadata — 2026-10-21
+
+`darwin_bulk::read_directory_sizes(path, should_stop)` is available on macOS with
+`macos-bulk-metadata` (default off). It owns the original getattrlistbulk acquisition
+and checked decoder, preserving raw basename bytes, apparent/allocated sizes and
+native errors. Open precedes the first stop check; stop is checked before each batch
+and returns an owned prefix. The caller holds permissions and thread materialization
+policy. Only the final directory component is opened no-follow; this is not whole-tree
+descriptor anchoring, a snapshot, constant memory or an interrupted syscall.
+
+Source: BuildHunter `src/bulk_metadata.rs` at 7ab00f16ae437fe88427c2acbe1b651b30b044f1
+(MIT). Product counters, error decoration, fallback and backend choice remain host-owned.
+See `specs/darwin-bulk.spec.yaml` in Hunter and fresh validation
+`specs/validation/darwin-bulk-20261021`; historical receipts remain historical.

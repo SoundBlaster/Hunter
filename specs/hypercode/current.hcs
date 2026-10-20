@@ -1,5 +1,5 @@
 HunterPrimitives:
-  status: "observed-source, initial extraction"
+  status: "observed-source, partial filesystem engine extraction"
 ScopedMetadata:
   source: "src/scoped_metadata.rs"
   boundary_spec: "hunter.fs.scoped_metadata"
@@ -224,3 +224,16 @@ HostConstruction:
 PreJoinCollection:
   implementation: "collect host/outcome before helper stop/queue close/join; post-join publication stays host-owned"
   folded_into: "hunter.fs.scan_assembly"
+DarwinBatchMetadata:
+  source: "crates/hunter-fs-core/src/darwin_bulk.rs"
+  boundary_spec: "hunter.fs.darwin_bulk_metadata"
+  availability: "macos and feature=macos-bulk-metadata; default off"
+NoFollowOpen:
+  implementation: "read_directory_sizes; final-component no-follow, host holds thread guard"
+  folded_into: "hunter.fs.darwin_bulk_metadata"
+CheckedRecords:
+  implementation: "getattrlistbulk decoder; lossless basename, apparent/allocated bytes and native errors"
+  folded_into: "hunter.fs.darwin_bulk_metadata"
+BatchCheckpoint:
+  implementation: "FnMut stop before each batch, after open; accumulated prefix on stop"
+  folded_into: "hunter.fs.darwin_bulk_metadata"
