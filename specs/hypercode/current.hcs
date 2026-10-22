@@ -247,3 +247,12 @@ ConsumeOnceLookup:
 BatchErrorFallback:
   implementation: "None for missing/consumed/Unsupported; other batch errors reconstructed without retry"
   folded_into: "hunter.fs.prepared_directory_sizes"
+ProcessPlatform:
+  boundary_spec: "hunter.platform.process"
+  implementation: "Explicit synchronous OS primitives; no automatic scheduling/sampling"
+RequestedThreadQos:
+  source: "crates/hunter-fs-core/src/thread_qos.rs"
+  folded_into: "hunter.platform.process"
+ProcessResourceSnapshot:
+  source: "crates/hunter-fs-core/src/process_resources.rs"
+  folded_into: "hunter.platform.process"

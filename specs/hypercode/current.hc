@@ -80,3 +80,6 @@ HunterPrimitives
   PreparedDirectorySizes
     ConsumeOnceLookup
     BatchErrorFallback
+  ProcessPlatform
+    RequestedThreadQos
+    ProcessResourceSnapshot
