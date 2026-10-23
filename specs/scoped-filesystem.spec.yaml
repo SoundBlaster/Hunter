@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.scoped_filesystem
   title: Descriptor-relative scan acquisition
-  version: 0.1.0-draft.1
+  version: 0.1.0-draft.2
   status: draft
 intent:
   summary: Acquire directory entries and metadata through one selected-root anchor,
@@ -44,10 +44,11 @@ interfaces:
 constraints:
 - id: anchoring
   level: MUST
-  statement: A directory root is opened no-follow once; subsequent absolute report
+  statement: A directory root is opened no-follow once; subsequent report
     paths are resolved relative to that descriptor, one no-follow directory component
     at a time. Reject outside paths and parent components. Initial root ancestors are
-    selected by the caller. Selected non-directories retain one initial no-follow
+    selected by the caller. Retain the original root identity for relative-root calls,
+    using an absolute path only for initial acquisition. Selected non-directories retain one initial no-follow
     metadata observation and cannot become directory traversal roots.
 - id: metadata
   level: MUST

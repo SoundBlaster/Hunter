@@ -1,6 +1,6 @@
 HunterPrimitives:
   status: "observed-source, partial filesystem engine extraction"
-  current_evidence: "specs/validation/scoped-filesystem-20261023/source-identity.json"
+  current_evidence: "specs/validation/scoped-relative-root-20261023/source-identity.json"
 ScopedFilesystem:
   source: "src/scoped_filesystem.rs"
   boundary_spec: "hunter.fs.scoped_filesystem"

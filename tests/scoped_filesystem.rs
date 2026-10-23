@@ -10,6 +10,42 @@ use std::{
 };
 
 struct Tree(PathBuf);
+
+#[test]
+fn relative_roots_keep_the_callers_identity_for_all_acquisition_and_markers() {
+    use std::os::unix::fs::MetadataExt;
+    // Cargo sets this integration test's cwd to its package root. No process-wide
+    // chdir or fixture creation in the checkout is needed for this relative case.
+    for identity in [Path::new("."), Path::new("crates/hunter-fs-core")] {
+        let native = fs::symlink_metadata(identity).unwrap();
+        let scope = ScopedFilesystem::open(identity).unwrap();
+        assert_eq!(scope.root_metadata(identity).unwrap().ino(), native.ino());
+        assert_eq!(
+            scope
+                .prepare_directory(identity)
+                .unwrap()
+                .metadata()
+                .unwrap()
+                .ino(),
+            native.ino()
+        );
+        let paths = entries(&scope, identity);
+        assert!(!paths.is_empty());
+        assert!(
+            paths
+                .iter()
+                .all(|path| !path.is_absolute() && path.strip_prefix(identity).is_ok())
+        );
+        assert_eq!(
+            scope
+                .marker_scope()
+                .unwrap()
+                .inspect_regular_file(identity, Location::Own, OsStr::new("Cargo.toml"))
+                .fact,
+            FileFact::Known(true)
+        );
+    }
+}
 impl Tree {
     fn new() -> Self {
         static NEXT: AtomicUsize = AtomicUsize::new(0);

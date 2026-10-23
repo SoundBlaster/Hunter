@@ -18,8 +18,8 @@ use std::{
     path::{Component, Path, PathBuf},
 };
 
-/// One selected-root handle, shared by every acquisition in a scan. Absolute
-/// report paths are not reopened after initialization. Child resolution opens
+/// One selected-root handle, shared by every acquisition in a scan. Report
+/// paths are not reopened after initialization. Child resolution opens
 /// each directory component separately, without following links. Renames are
 /// not a snapshot: independently acquired passes may observe different regular
 /// entries, but can never resolve a replacement symlink to its target.
@@ -36,14 +36,14 @@ impl ScopedFilesystem {
     /// every calling thread. Ancestors of the initially selected root are chosen
     /// by the caller; the final component and all subsequent children are no-follow.
     pub fn open(root: &Path) -> io::Result<Self> {
-        let root = if root.is_absolute() {
+        let absolute = if root.is_absolute() {
             root.to_owned()
         } else {
             std::env::current_dir()?.join(root)
         };
         // Remove trailing separators/`.` without resolving links or `..`.
         // A trailing slash must not turn a selected symlink into its target.
-        let opening: PathBuf = root.components().collect();
+        let opening: PathBuf = absolute.components().collect();
         let metadata = fs::symlink_metadata(&opening)?;
         #[cfg(target_os = "macos")]
         {
@@ -59,7 +59,10 @@ impl ScopedFilesystem {
             // opened for content. All recursive access requires the directory case.
             SelectedRoot::Entry(metadata)
         };
-        Ok(Self { root, selected })
+        Ok(Self {
+            root: root.to_owned(),
+            selected,
+        })
     }
 
     /// Marker observations and traversal share the exact same selected-root

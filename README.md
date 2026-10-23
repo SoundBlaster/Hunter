@@ -270,3 +270,11 @@ Tests cover selected-root and intermediate-link replacement, regular directory
 replacement during a prepared pass, final links, raw Linux names, cancellation,
 permission-independent metadata and parallel listing offsets. Tests and source
 identities: `specs/validation/scoped-filesystem-20261023`. Contracts remain draft.
+
+Relative-root review correction (2026-10-23): ScopedFilesystem keeps the caller's
+original root identity (including `.` and relative selections) for all report/
+scope operations. A separate absolute path is used only for initial acquisition.
+The relative-root regression covers root metadata, listings, prepared metadata
+and markers without a process-wide chdir. Fresh evidence is in
+`specs/validation/scoped-relative-root-20261023`; the first R3 receipts remain
+historical evidence for eafb6ff.
