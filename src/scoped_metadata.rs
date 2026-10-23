@@ -48,6 +48,9 @@ pub struct ScopedMetadata {
     directory: Option<File>,
 }
 impl ScopedMetadata {
+    pub(crate) fn from_handle(root: PathBuf, directory: Option<File>) -> Self {
+        Self { root, directory }
+    }
     pub fn open(root: &Path) -> io::Result<Self> {
         let directory = if std::fs::symlink_metadata(root)?.is_dir() {
             Some(
@@ -192,7 +195,7 @@ fn reason(e: &io::Error) -> Unavailable {
         Unavailable::IoError
     }
 }
-fn dataless(metadata: &libc::stat) -> bool {
+pub(crate) fn dataless(metadata: &libc::stat) -> bool {
     #[cfg(target_os = "macos")]
     {
         metadata.st_flags & 0x4000_0000 != 0
@@ -203,7 +206,7 @@ fn dataless(metadata: &libc::stat) -> bool {
         false
     }
 }
-fn check_local(fd: &File) -> io::Result<()> {
+pub(crate) fn check_local(fd: &File) -> io::Result<()> {
     let mut metadata = std::mem::MaybeUninit::<libc::stat>::uninit();
     // SAFETY: fd is alive; fstat writes an initialized stat on success.
     if unsafe { libc::fstat(fd.as_raw_fd(), metadata.as_mut_ptr()) } != 0 {

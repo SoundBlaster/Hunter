@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.entry_processing
   title: Child routing and selected metadata resolution
-  version: 0.1.0-draft.1
+  version: 0.1.0-draft.2
   status: draft
 intent:
   summary: Drive host-selected child routing and reconcile selected metadata without domain interpretation.
@@ -44,7 +44,7 @@ constraints:
 - id: metadata_precedence
   level: MUST
   statement: For selected directory use root metadata, otherwise supplied worker
-    result, otherwise one backend symlink_metadata on original path. For each selected
+    result, otherwise the optional prepared directory or one backend symlink_metadata on original path. For each selected
     entry take supplied slot by original index once; absent, out-of-range or consumed
     slots fall back once. Supplied errors are delivered without retry. Unselected
     directory performs no directory read/delivery. SelectedEntry resolve_metadata
@@ -80,6 +80,12 @@ provenance:
     boundary: high
     behavior: medium
   notes:
+  - Optional scoped fallback is lazy and retained for the selected pass; errors never
+    fall back to paths and cached errors never reopen. Default backends return None.
+  - R3 acquisition update (2026-10-23); portable EntryType now represents directory,
+    regular file, symlink and other categories instead of opaque std FileType.
+    Default path backend behavior is preserved; optional scoped acquisition and
+    current source/run identities are recorded in scoped-filesystem-20261023.
   - Recovered from BuildHunter ArtifactHandler process_listing/finish_measure at
     defea70cf2a6daee4b380ba8e3862be4b39ad86d. Seven integration witnesses supplement
     existing child/measurement/product tests. Draft is not owner acceptance.

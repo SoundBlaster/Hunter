@@ -1,7 +1,8 @@
 # Hunter
 
 Reusable filesystem acquisition for in-process search engines. `hunter-fs` is an
-initial Unix scoped-metadata primitive extracted from BuildHunter, not a full scanner.
+Unix scoped-metadata and macOS/Linux descriptor-acquisition library, alongside the
+portable scan engine in hunter-fs-core. Product policy remains outside Hunter.
 It has no BuildHunter/Rifle dependency or artifact vocabulary.
 
 ```rust
@@ -31,7 +32,7 @@ alone does not establish a no-download guarantee. Calls are synchronous; transie
 file changes are not an atomic snapshot. A selected regular-file root has no directory
 handle and observations return unavailable. `Drop` releases owned descriptors.
 
-Windows currently compiles without this Unix API. No traversal, size accounting,
+Windows currently compiles without this Unix API. ScopedMetadata alone provides no traversal, size accounting,
 worker pool, cancellation, indexing, full memory budget or performance gain is claimed.
 
 Tests preserve the prior marker race cases and cover public name validation,
@@ -233,3 +234,47 @@ Each counter is independently optional; unsupported platforms return no values.
 The host owns timing, deltas, percentages, averages, peaks and scan attribution.
 No child processes, scan-tree payloads or sampling tasks are introduced.
 See the draft [process-platform contract](specs/process-platform.spec.yaml).
+
+## Descriptor scan acquisition — R3 (2026-10-23)
+
+`ScopedFilesystem` (macOS/Linux) implements core `ScanAccess` for a selected root.
+The host installs its non-materializing guard before construction and on every
+worker. One directory root handle anchors listing, sizing and `marker_scope()`.
+Component-by-component `openat(O_DIRECTORY | O_NOFOLLOW)` prevents intermediate
+links from redirecting access; child metadata uses `fstatat(AT_SYMLINK_NOFOLLOW)`.
+No file contents are opened, including unreadable files and FIFOs. Initial root
+ancestors are caller-selected; a selected non-directory retains its initial
+no-follow metadata observation and cannot become a directory traversal root.
+
+Every listing opens an independent directory stream; concurrent passes do not
+share offsets. `DirectoryAccess` retains its directory across metadata/size reads,
+even if its pathname is replaced. Coordinator missing-result fallback acquires
+one directory lazily per selected pass; fully cached passes do not acquire it,
+and scoped failures never retry against ordinary paths. Native names stay raw.
+`EntryType` is the public four-category observation used by core routing instead
+of the private-layout std `FileType`; `EntryMetadata` carries sizes without
+constructing std metadata from native stat layouts. Existing std visitors convert
+observations losslessly for their directory/file/link/other routing decisions.
+The facade uses its existing libc dependency; the core stays std-only/offline.
+
+This is no-follow acquisition, not a filesystem snapshot or stable inode ledger
+between separate passes. Directory replacement with another ordinary directory
+can change later observations; an opened pass remains on its original directory.
+Paths shown to a user are identities for reporting, not durable filesystem action
+capabilities. No open descriptor per queued path is introduced; full budgets,
+Windows/other Unix implementation, default client adoption and live cloud
+acceptance remain separate work. Root/child dataless refusal supplements the
+calling-thread policy; it is not independent proof that a provider never downloads.
+
+Tests cover selected-root and intermediate-link replacement, regular directory
+replacement during a prepared pass, final links, raw Linux names, cancellation,
+permission-independent metadata and parallel listing offsets. Tests and source
+identities: `specs/validation/scoped-filesystem-20261023`. Contracts remain draft.
+
+Relative-root review correction (2026-10-23): ScopedFilesystem keeps the caller's
+original root identity (including `.` and relative selections) for all report/
+scope operations. A separate absolute path is used only for initial acquisition.
+The relative-root regression covers root metadata, listings, prepared metadata
+and markers without a process-wide chdir. Fresh evidence is in
+`specs/validation/scoped-relative-root-20261023`; the first R3 receipts remain
+historical evidence for eafb6ff.

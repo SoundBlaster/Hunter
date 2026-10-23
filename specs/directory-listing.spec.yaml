@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.directory_listing
   title: Owned directory listing acquisition
-  version: 0.1.0-draft.1
+  version: 0.1.0-draft.2
   status: draft
 intent:
   summary: Collect host-opened directory entries and path-qualified errors while
@@ -32,7 +32,7 @@ interfaces:
     kind: library
     summary: collect_directory(path, Result<iterator>, context, should_stop, observe)
       returns (DirectoryListing<Context>, DirectoryVisit); observe borrows child Path,
-      observed FileType and mutable context, and returns io::Result<()>.
+      observed EntryType and mutable context, and returns io::Result<()>.
   outbound: []
 constraints:
 - id: ownership
@@ -65,8 +65,9 @@ constraints:
   statement: Host opens entries under effective access/cloud policy, retains guards
     through iteration/observation, interprets context and owns observer I/O, intentional
     link following, post-list hooks, cancellation/status mapping and recursive tasks.
-    Observed FileType does not follow link targets; host observer may explicitly do
-    so. Path replacement/intermediate symlinks remain native pathname race limits.
+    Observed EntryType does not follow link targets; host observer may explicitly do
+    so. Default path visitors retain pathname race limits; collect_directory_events accepts
+    observations from an independently specified acquisition backend without reopening paths.
 effects:
   sideEffects:
   - id: listing_reads
@@ -87,6 +88,10 @@ provenance:
     boundary: high
     behavior: medium
   notes:
+  - R3 acquisition update (2026-10-23); portable EntryType now represents directory,
+    regular file, symlink and other categories instead of opaque std FileType.
+    Default path backend behavior is preserved; optional scoped acquisition and
+    current source/run identities are recorded in scoped-filesystem-20261023.
   - Recovered from BuildHunter list_directory at f3c66858360aa475690aae9d9445d21b4ca0b72f.
     Draft contract and execution evidence remain distinct from owner acceptance.
 implementationBindings:

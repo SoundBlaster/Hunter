@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.scan_engine
   title: Composed serial scan engine
-  version: 0.1.0-draft.1
+  version: 0.1.0-draft.2
   status: draft
 intent:
   summary: Compose root/task coordination, child routing and selected metadata resolution around one opaque host.
@@ -89,6 +89,10 @@ provenance:
     boundary: high
     behavior: medium
   notes:
+  - R3 acquisition update (2026-10-23); portable EntryType now represents directory,
+    regular file, symlink and other categories instead of opaque std FileType.
+    Default path backend behavior is preserved; optional scoped acquisition and
+    current source/run identities are recorded in scoped-filesystem-20261023.
   - Recovered from BuildHunter ArtifactHandler and its child/measurement adapters at
     1f92df7fdad00787e02f2eb029fa09f6007c66ca. Eight integration witnesses and a
     compile-fail consumption witness supplement lower-level/product guards.

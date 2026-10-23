@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.backend
   title: Native filesystem backend and root observation
-  version: 0.1.0-draft.1
+  version: 0.1.0-draft.2
   status: draft
 intent:
   summary: Separate native path-based metadata/listing operations from host policy
@@ -33,7 +33,8 @@ interfaces:
     summary: FilesystemBackend exposes symlink_metadata(Path) -> io::Result<Metadata>
       and read_dir(Path) -> io::Result<Entries>; Entries yields io::Result<DirEntry>.
       observe_root(&backend, Path) -> io::Result<RootObservation> returns Directory
-      or Entry containing the owned metadata. StdFilesystem implements both operations.
+      or Entry containing the owned metadata. StdFilesystem implements both operations. Optional prepare_directory provides a
+      DirectoryAccess fallback for one selected measurement pass; default is None.
   outbound: []
 constraints:
 - id: observation
@@ -78,6 +79,10 @@ provenance:
     boundary: high
     behavior: medium
   notes:
+  - R3 acquisition update (2026-10-23); portable EntryType now represents directory,
+    regular file, symlink and other categories instead of opaque std FileType.
+    Default path backend behavior is preserved; optional scoped acquisition and
+    current source/run identities are recorded in scoped-filesystem-20261023.
   - Recovered from BuildHunter Probes and Scanner root initialization at 7ef5bd98e1b4deca3c5b5f212ff5f89f41b9eba9.
     Contract remains draft; this native access/root-fact seam is not full engine startup.
 implementationBindings:
