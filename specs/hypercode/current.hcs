@@ -1,5 +1,23 @@
 HunterPrimitives:
   status: "observed-source, partial filesystem engine extraction"
+  current_evidence: "specs/validation/scoped-filesystem-20261023/source-identity.json"
+ScopedFilesystem:
+  source: "src/scoped_filesystem.rs"
+  boundary_spec: "hunter.fs.scoped_filesystem"
+  availability: "macOS/Linux; no snapshot or stable cross-pass inode promise"
+SelectedRootAnchor:
+  implementation: "selected directory handle shared with marker_scope; selected files retain initial metadata only"
+  folded_into: "hunter.fs.scoped_filesystem"
+DescriptorEnumeration:
+  implementation: "component openat/O_NOFOLLOW, independent fdopendir/readdir streams, fstatat no-follow"
+  folded_into: "hunter.fs.scoped_filesystem"
+PreparedDirectoryMetadata:
+  implementation: "DirectoryAccess owns one directory; worker and lazy coordinator passes never fall back to paths"
+  folded_into: "hunter.fs.scoped_filesystem"
+ScopedAcquisitionInterface:
+  source: "crates/hunter-fs-core/src/scan_access.rs"
+  implementation: "ScanAccess + DirectoryAccess + EntryMetadata; backend-neutral EntryType in lib.rs"
+  folded_into: "hunter.fs.scoped_filesystem"
 ScopedMetadata:
   source: "src/scoped_metadata.rs"
   boundary_spec: "hunter.fs.scoped_metadata"

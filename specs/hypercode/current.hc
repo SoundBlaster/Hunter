@@ -3,6 +3,10 @@ HunterPrimitives
     DescriptorLifetime
     RegularFileObservation
     LocalMetadataGuard
+  ScopedFilesystem
+    SelectedRootAnchor
+    DescriptorEnumeration
+    PreparedDirectoryMetadata
   PortableDirectory
   MetadataSizing
   ScopedWork
@@ -30,6 +34,7 @@ HunterPrimitives
   FilesystemBackend
     NativePathAccess
     RootObservation
+    ScopedAcquisitionInterface
   DirectoryWorker
     TaskExecution
     ListingFirst

@@ -3,7 +3,7 @@ kind: BoundarySpec
 metadata:
   id: hunter.fs.directory_tasks
   title: Opaque directory tasks and measurement results
-  version: 0.1.0-draft.2
+  version: 0.1.0-draft.3
   status: draft
 intent:
   summary: Plan original-position file measurements from a directory task and preserve
@@ -81,6 +81,10 @@ provenance:
     boundary: high
     behavior: medium
   notes:
+  - R3 acquisition update (2026-10-23); portable EntryType now represents directory,
+    regular file, symlink and other categories instead of opaque std FileType.
+    Default path backend behavior is preserved; optional scoped acquisition and
+    current source/run identities are recorded in scoped-filesystem-20261023.
   - Extracted from BuildHunter aefd712; desired draft contract remains separate from
     test execution. Full filesystem recursion/coordinator still host-owned.
 implementationBindings:
