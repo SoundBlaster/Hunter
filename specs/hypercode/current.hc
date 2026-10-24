@@ -44,6 +44,7 @@ HunterPrimitives
     OrderedCollection
     ContextObservation
     AcquisitionOutcome
+    ListingRetention
   MeasurementBackend
     DirectoryPreparation
     PreparedFileEffects

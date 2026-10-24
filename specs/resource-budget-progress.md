@@ -10,7 +10,9 @@ application defaults and whole-process RSS acceptance are separate integration.
 | TaskLedger/TaskIdentity | Long-running serial traversal | hunter.fs.task_ledger; sparse live slots with monotonic IDs | 100,000 sequential task regression | Bound peak concurrent admission separately |
 | ScanAssembly/ResponseChannel | Worker producers and caller-thread engine | hunter.fs.scan_assembly; optional bounded/rendezvous responses | Full-buffer and factory-panic producer-release tests | Consumer must release receiver before join; limit individual payloads |
 
-Next layer: limit owned directory listing payloads on portable/scoped acquisition.
+| DirectoryAcquisition/ListingRetention | Portable and scoped event consumers | hunter.fs.directory_listing; ordered retained prefix with explicit typed limit | bounded-listings-20261024 | Host must stop/report incomplete; opaque iterator/context allocations remain host-owned |
+
+Next layer: BuildHunter adoption of bounded owned listing payloads.
 Then BuildHunter must adopt limits, bound report/diagnostic/profile storage, preserve
 partial/terminal semantics and measure end-to-end CPU/RSS/latency. This foundation
 alone does not establish a whole-process memory bound or close R5/C5.

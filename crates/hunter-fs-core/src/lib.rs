@@ -347,7 +347,10 @@ mod worker;
 pub use worker::{DirectoryWorker, run_directory_worker};
 
 mod listing;
-pub use listing::{collect_directory, collect_directory_events};
+pub use listing::{
+    BoundedDirectoryListing, ListingLimit, ListingLimits, collect_directory,
+    collect_directory_events, collect_directory_events_with_limits, collect_directory_with_limits,
+};
 
 mod measurement;
 pub use measurement::{DirectoryMeasurementBackend, FileMeasurementBackend};

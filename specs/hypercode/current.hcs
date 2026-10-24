@@ -278,3 +278,8 @@ ProcessResourceSnapshot:
 QueueAdmission:
   implementation: "QueueLimits + typed ownership-preserving rejection + QueueSnapshot high-water accounting"
   folded_into: "hunter.fs.work"
+
+ListingRetention:
+  source: "crates/hunter-fs-core/src/listing.rs"
+  implementation: "optional entry/error/estimated-weight prefix; typed limit, visitor stop predicate; legacy collectors unchanged"
+  folded_into: "hunter.fs.directory_listing"

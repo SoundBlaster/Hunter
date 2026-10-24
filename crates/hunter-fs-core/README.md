@@ -532,3 +532,11 @@ Its retained capacity follows peak concurrent work, not all previously visited
 folders. Compatibility constructors remain unbounded. Directory listing payloads,
 reports/diagnostics, profile storage and application-wide RSS require separate
 consumer limits. Draft contracts/evidence: [resource foundations](../../specs/validation/resource-foundations-20261024/README.md).
+
+The optional `collect_directory_with_limits` / `collect_directory_events_with_limits`
+collectors bound the retained prefix by entries, errors and estimated payload weight.
+They return a typed limit independently of `DirectoryVisit`; a host must never
+interpret `Completed` plus a limit as a complete listing. Event acquisition must
+poll the supplied stop predicate to stop further I/O. The current event, opaque
+context/error allocations and iterator internals are outside the estimate. See
+[bounded listing evidence](../../specs/validation/bounded-listings-20261024).
