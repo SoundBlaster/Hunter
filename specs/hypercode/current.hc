@@ -11,6 +11,7 @@ HunterPrimitives
   MetadataSizing
   ScopedWork
     TaskQueue
+    QueueAdmission
     WorkerLaunch
     Shutdown
   DirectoryTasks

@@ -314,7 +314,10 @@ mod tests {
 }
 
 mod work;
-pub use work::{ShutdownGuard, WorkQueue, spawn_workers, worker_count};
+pub use work::{
+    QueueLimits, QueueRejection, QueueRejectionReason, QueueSnapshot, ShutdownGuard, WorkQueue,
+    spawn_workers, worker_count,
+};
 
 mod task;
 pub use task::{
@@ -362,7 +365,7 @@ mod materialization;
 pub use materialization::NonMaterializingIoGuard;
 
 mod assembly;
-pub use assembly::{ScanSession, with_scan_session};
+pub use assembly::{ScanSession, with_scan_session, with_scan_session_limits};
 
 mod coordinator;
 pub use coordinator::{TraversalCoordinator, TraversalHandler, TraversalOutcome, TraversalTasks};
