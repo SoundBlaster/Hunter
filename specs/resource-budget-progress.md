@@ -12,6 +12,8 @@ application defaults and whole-process RSS acceptance are separate integration.
 
 | DirectoryAcquisition/ListingRetention | Portable and scoped event consumers | hunter.fs.directory_listing; ordered retained prefix with explicit typed limit | bounded-listings-20261024 | Host must stop/report incomplete; opaque iterator/context allocations remain host-owned |
 
+| DarwinBatchMetadata/BatchRetention | Optional macOS metadata preparation | hunter.fs.darwin_bulk_metadata; retained observation/weight caps | bounded-metadata-20261024 | Host must report limit; fixed batch buffer and table overhead excluded |
+
 Next layer: BuildHunter adoption of bounded owned listing payloads.
 Then BuildHunter must adopt limits, bound report/diagnostic/profile storage, preserve
 partial/terminal semantics and measure end-to-end CPU/RSS/latency. This foundation

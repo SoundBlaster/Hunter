@@ -283,3 +283,8 @@ ListingRetention:
   source: "crates/hunter-fs-core/src/listing.rs"
   implementation: "optional entry/error/estimated-weight prefix; typed limit, visitor stop predicate; legacy collectors unchanged"
   folded_into: "hunter.fs.directory_listing"
+
+BatchRetention:
+  source: "crates/hunter-fs-core/src/darwin_bulk.rs"
+  implementation: "optional observation/estimated-weight cap before insert; typed prefix limit"
+  folded_into: "hunter.fs.darwin_bulk_metadata"
